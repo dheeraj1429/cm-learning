@@ -1,6 +1,6 @@
 // nextauth.d.ts
 import { DefaultSession, DefaultUser } from 'next-auth';
-// common interface for JWT and Session
+// common interface for JWT and Session.
 interface IUser extends DefaultUser {
    role?: { roleName: string };
    accessToken: string;

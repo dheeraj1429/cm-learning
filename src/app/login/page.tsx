@@ -1,24 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@/components/ui/button/button';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 function Login() {
-   const loginHandler = (
+   const [isLoading, setIsLoading] = useState(false);
+
+   const router = useRouter();
+
+   const loginHandler = async (
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
    ) => {
       e.preventDefault();
-      signIn('credentials', {
+      setIsLoading(true);
+      const response = await signIn('credentials', {
          email: 'dheerajsingh123@gmail.com',
          password: 'Dheeraj123@',
          redirect: false,
       });
+
+      if (!!response && response?.status === 200 && response?.ok) {
+         router.push('/dashboard');
+      }
    };
 
    return (
       <div className="p-2">
-         <Button onClick={loginHandler} variation="login-button">
+         <Button
+            isLoading={isLoading}
+            onClick={loginHandler}
+            variation="login-button"
+         >
             Login
          </Button>
       </div>
