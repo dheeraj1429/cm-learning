@@ -21,6 +21,8 @@ function Login() {
          redirect: false,
       });
 
+      console.log(response);
+
       if (!!response && response?.status === 200 && response?.ok) {
          router.push('/dashboard');
       }

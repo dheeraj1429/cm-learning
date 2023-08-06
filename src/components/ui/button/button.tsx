@@ -1,6 +1,12 @@
 import React, { forwardRef } from 'react';
 import classes from './button.module.css';
-import { ButtonProps } from '.';
+
+export interface ButtonProps
+   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+   isLoading?: boolean;
+   variation?: 'login-button' | 'deposit-btn' | 'wallet_button';
+   children: React.ReactNode;
+}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
    (
@@ -18,5 +24,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       );
    }
 );
+
+Button.displayName = 'Button';
 
 export default Button;

@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
                password,
             });
 
-            const response = await fetch(`http://localhost:8000/auth/login`, {
+            const response = await fetch(`http://localhost:10000/auth/signIn`, {
                method: 'POST',
                headers: {
                   'Content-type': 'application/json; charset=UTF-8',

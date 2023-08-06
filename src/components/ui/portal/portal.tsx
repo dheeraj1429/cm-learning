@@ -3,7 +3,11 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { SheetPortalInterface } from '.';
+
+export interface SheetPortalInterface
+   extends React.HTMLAttributes<HTMLDivElement> {
+   children?: React.ReactNode;
+}
 
 const SheetPortal = React.forwardRef<HTMLDivElement, SheetPortalInterface>(
    ({ className, children, ...props }, ref): React.JSX.Element => {
@@ -80,5 +84,10 @@ const SheetTitle = React.forwardRef<HTMLDivElement, SheetPortalInterface>(
    )
 );
 
+SheetPortal.displayName = 'Sheet Portal';
+SheetOverlay.displayName = 'Sheet Overlay';
+SheetContent.displayName = 'Sheet Content';
+SheetHeader.displayName = 'Sheet Header';
+SheetTitle.displayName = 'Sheet Title';
 export { SheetOverlay, SheetContent, SheetHeader, SheetTitle };
 export default SheetPortal;
