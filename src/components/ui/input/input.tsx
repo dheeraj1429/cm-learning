@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils';
 export interface InputInterface
    extends React.InputHTMLAttributes<HTMLInputElement> {
    className?: string;
-   children?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputInterface>(

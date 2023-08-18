@@ -5,9 +5,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 
 export interface SheetPortalInterface
-   extends React.HTMLAttributes<HTMLDivElement> {
-   children?: React.ReactNode;
-}
+   extends React.HTMLAttributes<HTMLDivElement> {}
 
 const SheetPortal = React.forwardRef<HTMLDivElement, SheetPortalInterface>(
    ({ className, children, ...props }, ref): React.JSX.Element => {

@@ -1,30 +1,46 @@
 import React, { forwardRef } from 'react';
 import classes from './button.module.css';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const button = cva(classes.base, {
+   variants: {
+      variant: {
+         primary: classes.primary,
+         secondary: classes.secondary,
+      },
+      size: {
+         small: classes.small,
+         medium: classes.medium,
+      },
+   },
+   defaultVariants: {
+      variant: 'primary',
+      size: 'medium',
+   },
+});
 
 export interface ButtonProps
-   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+      VariantProps<typeof button> {
    isLoading?: boolean;
-   variation?: 'login-button' | 'deposit-btn' | 'wallet_button';
-   children: React.ReactNode;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
    (
-      { variation, className, children, isLoading, ...props },
+      { className, variant, size, isLoading, children, ...props },
       ref
    ): React.JSX.Element => {
       return (
          <button
-            className={className || classes[variation || 'login-button']}
+            className={button({ className, variant, size })}
             ref={ref}
             {...props}
          >
-            {isLoading ? 'Loading..' : children}
+            {isLoading ? 'loading' : children}
          </button>
       );
    }
 );
 
 Button.displayName = 'Button';
-
 export default Button;
